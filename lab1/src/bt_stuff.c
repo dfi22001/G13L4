@@ -7,6 +7,8 @@
 #include <zephyr/kernel.h>
 #include "bt_stuff.h"
 
+
+
 static void connected(struct bt_conn *conn, uint8_t err)
 {
 	if (err) {
@@ -26,7 +28,7 @@ BT_CONN_CB_DEFINE(conn_callbacks) = {
 	.disconnected = disconnected,
 };
 
-static void bt_ready(void)
+void bt_ready(void)
 {
 	int err;
 
@@ -41,28 +43,36 @@ static void bt_ready(void)
 	printk("Advertising successfully started\n");
 }
 
-static void bas_notify(void)
-{
-	uint8_t battery_level = bt_bas_get_battery_level();
+//void hrs_notify(void)
+//{
 
-	battery_level--;
-
-	if (!battery_level) {
-		battery_level = 100U;
-	}
-
-	bt_bas_set_battery_level(battery_level);
-}
-
-static void hrs_notify(void)
-{
-	static uint8_t heartrate = 90U;
 
 	/* Heartrate measurements simulation */
-	heartrate++;
-	if (heartrate == 160U) {
-		heartrate = 90U;
+//	heartrate++;
+//	if (heartrate == 160U) {
+//		heartrate = 90U;
+//	}
+
+//	bt_hrs_notify(heartrate);
+//}
+
+uint8_t turn_on_bt(void)
+{
+	int err;
+	err = bt_enable(NULL);
+	if (err) {
+		printk("Bluetooth init failed (err %d)\n", err);
+		return 1;
 	}
 
-	bt_hrs_notify(heartrate);
+	bt_ready();
+	bt_addr_le_t addr;
+	char addr_s[BT_ADDR_LE_STR_LEN];
+	size_t id_count = 1;
+	bt_id_get(&addr, &id_count);
+	bt_addr_le_to_str(&addr, addr_s, sizeof(addr_s));
+	printk("addr: %s", addr_s);
+	return 0;
+
+
 }

@@ -18,36 +18,18 @@
 
 void main(void)
 {
-	int err;
 
-	err = bt_enable(NULL);
-	if (err) {
-		printk("Bluetooth init failed (err %d)\n", err);
-		return;
+  uint8_t heartrate = 0U;
+	uint8_t status = turn_on_bt();
+	if (!status){
+		printk("BT seems to have started just fine \n");
+	} else {
+		printk("oh shit!\n");
 	}
 
-	bt_ready();
-
-//bt_conn_auth_cb_register(&auth_cb_display);
-
-	bt_addr_le_t addr;
-	char addr_s[BT_ADDR_LE_STR_LEN];
-	size_t id_count = 1;
-	bt_id_get(&addr, &id_count);
-	bt_addr_le_to_str(&addr, addr_s, sizeof(addr_s));
-	printk("addr: %s", addr_s);
-
-
-	/* Implement notification. At the moment there is no suitable way
-	 * of starting delayed work so we do it here
-	 */
 	while (1) {
+		heartrate++;
+		bt_hrs_notify(heartrate);
 		k_sleep(K_SECONDS(1));
-
-		/* Heartrate measurements simulation */
-		hrs_notify();
-
-		/* Battery level simulation */
-		bas_notify();
 	}
 }
