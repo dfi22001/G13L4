@@ -5,6 +5,7 @@
 #include <nrfx_bsdriver.h>
 #include <assert.h>
 #include <stdio.h>
+#include <Daniel_GPIO.h> //Ni behöver alltså inte inkludera er egna UARTE write, förutsätt att det finns en uarte_write, uarte_init osv osv
 
 /* By Daniel Morberg*/
 
@@ -12,18 +13,5 @@
 
 int main(void)
 {
-awd
-	int looper = 0;
-	int looper2 = 1;
-	int looper3 = 2;
-	uint8_t *secret_ptr = &secret;
-	uint8_t *keyword_ptr = &keyword;
-	uint8_t *goal_ptr = &goal;
 
-	while (looper < goal && looper2 < goal && looper3 < goal)
-	{
-		looper = looper + inkr1;
-		looper2 = looper2 + inkr2;
-		looper3 = looper3 + inkr3;
-	}
 }
