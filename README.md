@@ -1,3 +1,3 @@
 # DVA270
 
-Pushing seems to work!
+Ni kan lämna ett meddelande här om ni vill när ni ändå är inne och editerar, men ingenting osmakligt. /Daniel
