@@ -6,6 +6,7 @@
 #include <assert.h>
 #include <stdio.h>
 #include <Daniel_GPIO.h> //Ni behöver alltså inte inkludera er egna UARTE write, förutsätt att det finns en uarte_write, uarte_init osv osv
+#include "grupp1.h" //inkludera er header fil.
 
 /* By Daniel Morberg*/
 
