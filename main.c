@@ -13,5 +13,11 @@
 
 int main(void)
 {
-
+int keypress = get_key();
+  switch(keypress){
+    case 1:
+    //anrop till grupp 1's funktion
+    breaK;
+  //osv osv
+  }
 }
